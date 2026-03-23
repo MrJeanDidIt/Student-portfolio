@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #30363d;
+      color: #e5e7eb;
+      overflow-x: hidden;
+      animation: fadeIn .8s ease-out;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(.96) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes headerFade {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      background: #30363d;
+      color: white;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      animation: headerFade .8s ease-out;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    .tab-bar {
+      margin-top: 0;
+    }
+
+    .tab-button {
+      padding: .35rem .8rem;
+      font-size: .9rem;
+    }
+
+    header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1rem;
+    }
+
+    .tab-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      border: 1px solid #5f6a79;
+      background: #1f2a33;
+      color: #e5e7eb;
+      border-radius: 999px;
+      padding: .4rem .9rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .tab-button.active {
+      background: #e5e7eb;
+      color: #1f2937;
+      border-color: #e5e7eb;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      opacity: 0;
+      animation: popIn .6s ease-out forwards;
+      animation-delay: 0.15s;
+    }
+
+    #about { animation-delay: 0.2s; }
+    #projects { animation-delay: 0.3s; }
+    #demo { animation-delay: 0.4s; }
+
+    h2 {
+      margin-top: 2rem;
+      font-size: 1.6rem;
+      color: #e5e7eb;
+    }
+
+    .projects-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1rem;
+      align-items: start;
+      margin-top: 1rem;
+    }
+
+    .profile-panel {
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .profile-panel img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      margin-bottom: 0.75rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 0;
+    }
+
+    .card {
+      background: #484f58;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      padding: 0.8rem;
+      transform: translateY(0);
+      opacity: 1;
+      transition: transform .25s ease, box-shadow .25s ease;
+      cursor: default;
+      color: #e5e7eb;
+      font-size: 0.95rem;
+      min-height: 110px;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .card h3 { margin-top:0; }
+
+    .button-primary {
+      display:inline-block;
+      background:#1e3a8a; /* navy */
+      color:white;
+      border:none;
+      padding: .65rem 1rem;
+      border-radius: 6px;
+      cursor:pointer;
+      font-weight:600;
+      margin-top: .7rem;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(30, 58, 138, 0.45);
+      background:#1e40af; /* slightly brighter navy */
+    }
+
+    #randomResult {
+      margin-top:.8rem;
+      font-weight:700;
+      min-height: 1.5rem;
+      transition: color .2s ease;
+    }
+
+    footer {
+      text-align:center;
+      margin: 2rem 1rem 1rem;
+      font-size:.92rem;
+      color:#cbd5e1;
+      opacity: 0.95;
+    }
+
+    @media (max-width: 900px) {
+      .projects-layout {
+        grid-template-columns: 1fr;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .profile-panel img {
+        max-height: 240px;
+        object-fit: cover;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Henry Jean</h1>
+  <p>Project Library</p>
+  <div class="tab-bar">
+    <button class="tab-button active" data-target="#about">About</button>
+  
+    <button class="tab-button" data-target="#projects">Projects</button>
+     <a href="projects.html" target="_blank" rel="noreferrer"><button class="tab-button">Projects</button></a>
+    <button class="tab-button" data-target="#demo">School</button>
+    <button class="tab-button" data-target="#henry-yaps">Henry Yaps</button>
+      <a href="henry-yaps-blog.html" target="_blank" rel="noreferrer"><button class="tab-button">Blog</button></a>
+    <button class="tab-button" data-target="#contact">Contact</button>
+  </div>
+</header>
+
+<main>
+  <section id="about" class="tab-panel active">
+    <h2>About</h2>
+    <p>
+      I build things for fun and its a way for me to help grow and learn, this portfolio is my introduction and first ever personal project 
+     as a developer, however I will be adding future projects, experiments, and working prototypes.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-layout">
+      <div class="grid">
+        <article class="card">
+          <h3>Initial Portfolio</h3>
+          <p>Short summary: this will probably be the last project I will finish because every year of college im coming back to this so i can make like small improvements and add animations ect. </p>
+          <p><strong>Status:</strong> Planning</p>
+        </article>
+       
+        <article class="card">
+          <h3>Project 1</h3>
+          <p>Short summary: e.g. "50/50 chance generator with win tracking and history".</p>
+          <p><strong>Status:</strong> Planning</p>
+        </article>
+
+        <article class="card">
+          <h3>Project 2</h3>
+          <p>Short summary: e.g. "Placeholder project".</p>
+          <p><strong>Status:</strong> In progress</p>
+        </article>
+
+        <article class="card">
+          <h3>Project 3</h3>
+          <p>Short summary: e.g. "Cloud computing server hosting".</p>
+          <p><strong>Status:</strong> Idea</p>
+        </article>
+
+        <article class="card">
+          <h3>Project 4</h3>
+          <p>Short summary: e.g. "Car rental hosting startup".</p>
+          <p><strong>Status:</strong> Idea</p>
+        </article>
+      </div>
+
+      <div class="profile-panel">
+        <img src="profile.jpg" alt="Henry Jean" />
+        <h3>About Me</h3>
+        <p>Hi, I’m Henry. I enjoy building small apps, exploring cloud, and designing smooth UI with JavaScript.</p>
+      </div>
+    </div>
+  </section>
+
+  </section>
+
+  <section id="demo" class="tab-panel">
+    <h2>Fun demo</h2>
+    <button id="flipBtn" class="button-primary">50/50 Flip</button>
+    <div id="randomResult">Click the button to flip.</div>
+  </section>
+
+  <section id="henry-yaps" class="tab-panel">
+    <h2>Henry Yaps</h2>
+    <p>This is a personal space for quick thoughts, updates, and mini journal entries about what I'm building next.</p>
+    <ul>
+      <li>Learning: New JS animations and CSS transition techniques</li>
+      <li>Goal: Add a real backend (Flask or FastAPI) this month</li>
+      <li>Experiment: Ship a small CLI tool with Typer and GitHub Actions</li>
+    </ul>
+    <p><a href="henry-yaps-blog.html" target="_blank" rel="noreferrer">Read full blog</a></p>
+  </section>
+
+  <section id="contact" class="tab-panel">
+    <h2>Contact</h2>
+    <p>Email: henryjean0824@gmail.com</p>
+    <p>GitHub: <a href="https://github.com/Mr.Jeandidit" target="_blank" rel="noreferrer">github.com/Mr.Jeandidit</a></p>
+    <p>LinkedIn: <a href="#">linkedin.com/in/yourprofile</a></p>
+  </section>
+</main>
+
+<footer>
+  <p>Contact: henryjean0824@gmail.com• GitHub: github.com/Mr.Jeandidit</p>
+</footer>
+
+<script>
+  const randomResult = document.getElementById("randomResult");
+  const flipBtn = document.getElementById("flipBtn");
+
+  flipBtn.addEventListener("click", () => {
+    const flip = Math.random() < 0.5 ? "Heads" : "Tails";
+    randomResult.textContent = `Result: ${flip}`;
+    randomResult.style.color = flip === "Heads" ? "#1a73e8" : "#d32f2f";
+    randomResult.animate(
+      [
+        { transform: "scale(1)", opacity: 1 },
+        { transform: "scale(1.08)", opacity: 0.9 },
+        { transform: "scale(1)", opacity: 1 }
+      ],
+      { duration: 320, easing: "ease-out" }
+    );
+  });
+
+  // Optional scroll reveal for card animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.transform = "translateY(0)";
+        entry.target.style.opacity = "1";
+        entry.target.style.transition = "opacity .6s ease, transform .6s ease";
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.card').forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(16px)';
+    card.style.transitionDelay = `${index * 0.08}s`;
+    observer.observe(card);
+  });
+
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  function activateTab(targetId) {
+    tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.target === targetId));
+    tabPanels.forEach(p => p.classList.toggle('active', `#${p.id}` === targetId));
+  }
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      activateTab(button.dataset.target);
+    });
+  });
+  ;
+</script>
+
+</body>
+</html>
