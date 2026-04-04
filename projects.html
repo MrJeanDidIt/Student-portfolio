@@ -7,18 +7,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/theme.css">
   <style>
     :root {
-      --bg: #2f2738;
-      --surface: #3a3145;
-      --surface-strong: #433950;
-      --surface-soft: #4a4058;
-      --text: #000000;
-      --muted: #000000;
-      --accent: #433950;
-      --accent-hover: #514564;
+      --bg: #4a3e5c;
+      --surface: #5a4d6e;
+      --surface-strong: #66577d;
+      --surface-soft: #72648a;
+      --text: #ffffff;
+      --muted: #ffffff;
+      --accent: #7b6ba0;
+      --accent-hover: #8a79b3;
       --border: #000000;
-      --shadow: rgba(0, 0, 0, 0.35);
+      --shadow: rgba(0, 0, 0, 0.28);
     }
 
     body {
@@ -82,7 +83,7 @@
     .tab-button {
       display: inline-block;
       border: 1px solid var(--border);
-      background: var(--surface-soft);
+      background: var(--accent);
       color: var(--text);
       border-radius: 999px;
       padding: .4rem .9rem;
@@ -93,8 +94,8 @@
 
     .tab-button.active {
       background: var(--accent);
-      color: #000000;
-      border-color: var(--accent);
+      color: var(--text);
+      border-color: var(--border);
     }
 
     header p {
@@ -149,7 +150,7 @@
     .button-primary {
       display: inline-block;
       background: var(--accent);
-      color: #000000;
+      color: var(--text);
       border: none;
       padding: .65rem 1rem;
       border-radius: 6px;
@@ -174,7 +175,7 @@
       text-align: center;
       padding: 0.9rem 1rem;
       font-size: 1rem;
-      color: #000;
+      color: var(--text);
       background: var(--surface-strong);
       border-top: 1px solid #000000;
       font-family: "Times New Roman", Times, serif;
@@ -182,7 +183,7 @@
     }
 
     footer a {
-      color: #000;
+      color: var(--text);
     }
   </style>
 </head>
@@ -193,7 +194,7 @@
   <a href="portfolio.html" class="home-link"><p>My Work</p></a>
   <div class="tab-bar">
     <a href="portfolio.html" class="tab-button">About</a>
-    <span class="tab-button active">Projects</span>
+    <a href="projects.html" class="tab-button active" aria-current="page">Projects</a>
     <a href="school-work.html" class="tab-button">School</a>
     <a href="henry-yaps-blog.html" class="tab-button">Henry Yaps</a>
   </div>
@@ -247,7 +248,17 @@
 <footer>
   <p>Email: henryjean0824@gmail.com | GitHub: <a href="https://github.com/Mr.Jeandidit" target="_blank" rel="noreferrer">github.com/Mr.Jeandidit</a></p>
 </footer>
+<button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">Light Mode</button>
 
+<script src="assets/theme-toggle.js" defer></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
